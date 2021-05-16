@@ -9,7 +9,7 @@ import com.example.myapplication.presentation.shapes.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var shapes= LinkedList<Shape>()
+    private var shapes = LinkedList<Shape>()
     private lateinit var customShape: CustomShape
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,23 +18,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onRect(view: View) {
-
-
-        val rect = Shape(0f, 0f, SHAPE_RECT, size = 50f)
+        val rect = Shape(0f, 0f, SHAPE_RECT, size = RECT_SIZE)
         getNonCollideShape(rect)
         shapes.add(rect)
+        customShape.setShapes(shapes)
         customShape.invalidate()
     }
 
     private fun getNonCollideShape(shape: Shape) {
-        val x = Math.random()*customShape.width
-        val y = Math.random()*customShape.height
+        var x = Math.random() * (customShape.width - RECT_SIZE)
+        var y = Math.random() * (customShape.height - RECT_SIZE)
+        if (shape.type == SHAPE_CIRCLE) {
+            //to make circle inside boundaries
+            x += CIRCLE_RADIUS
+            y += CIRCLE_RADIUS
+        }
 
         shape.x = x.toFloat()
         shape.y = y.toFloat()
     }
+
     fun onUndo(view: View) {
-        if (shapes.size == 0){
+        if (shapes.size == 0) {
             Toast.makeText(this, "No shapes now.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -43,15 +48,15 @@ class MainActivity : AppCompatActivity() {
         customShape.invalidate()
 
     }
+
     fun onNext(view: View) {
         startActivity(Intent(this, PhotosActivity::class.java))
     }
-    fun onCircle(view: View) {
-        val x = Math.random()*100
-        val y = Math.random()*200
 
-        val rect = Shape(x.toFloat(), y.toFloat(), SHAPE_CIRCLE, radius = 25f)
-        shapes.add(rect)
+    fun onCircle(view: View) {
+        val circle = Shape(0F, 0F, SHAPE_CIRCLE, radius = CIRCLE_RADIUS)
+        getNonCollideShape(circle)
+        shapes.add(circle)
         customShape.setShapes(shapes)
         customShape.invalidate()
     }
