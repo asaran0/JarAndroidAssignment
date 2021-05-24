@@ -1,11 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.presentation.shapes
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.myapplication.presentation.shapes.*
+import com.example.myapplication.R
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

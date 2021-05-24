@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.shapes.PhotosActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.imagegrid.ImageGridActivity"></activity>
+        <activity android:name=".presentation.shapes.PhotosActivity" />
+        <activity android:name=".presentation.shapes.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
